@@ -1,12 +1,12 @@
-require_relative ('prisoner_list.rb')
+require_relative ('clown_list.rb')
 
-class Prisoner
-  attr_reader :pos, :color, :alive
+class Clown
+  attr_reader :pos, :color, :correct
 
   def initialize(opts)
     @pos = opts[:position]
-    @alive = true
-    @prisoners_line = opts[:prisoners_line]
+    @correct = true
+    @clowns_line = opts[:clowns_line]
     @color = opts[:color]
 
 
@@ -17,15 +17,15 @@ class Prisoner
 
   def say_answer
     answer = figure_what_answer_to_say
-    @alive = @color == answer
-    {color_spoken: answer, alive: @alive, position: @pos}
+    @correct = @color == answer
+    {color_spoken: answer, correct: @correct, position: @pos}
   end
 
   def hear_answer_result(heard_answer)
     #This is also where algorithm code would go!
 
     @pos_last_heard_answer = heard_answer[:position]
-    @last_speaker_alive = heard_answer[:alive]
+    @last_speaker_correct = heard_answer[:correct]
     @color_last_speaker_said = heard_answer[:color_spoken]
   end
 
@@ -40,10 +40,10 @@ class Prisoner
 
   def count_hats_ahead
     i = pos + 1
-    while i < @prisoners_line.length
-      seen_color = prisoners_line[i].color
+    while i < @clowns_line.length
+      seen_color = clowns_line[i].color
       if seen_color == :red
-        @known_reds += 1 
+        @known_reds += 1
       else
         @known_blues += 1
       end
@@ -52,4 +52,3 @@ class Prisoner
   end
 
 end
-

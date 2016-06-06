@@ -1,28 +1,28 @@
-require_relative 'prisoner.rb'
-require_relative 'prisoner_list.rb'
+require_relative 'clown.rb'
+require_relative 'clown_list.rb'
 
 def format(num)
   num.to_s.rjust(2, "0")
 end
 
 def play_sick_game
-  #get a new list of prisoners
-  prisoner_list = PrisonerList.new
-  
+  #get a new list of clowns
+  clown_list = ClownList.new
+
   #make them all guess
-  prisoner_list.prisoners.each do |prisoner|
-    heard_result = prisoner.say_answer
-  
-    #all other prisoners hear result 
-    i = prisoner.pos + 1
-    while i < prisoner_list.length
-      prisoner_list[i].hear_answer_result(heard_result)
+  clown_list.clowns.each do |clown|
+    heard_result = clown.say_answer
+
+    #all other clowns hear result
+    i = clown.pos + 1
+    while i < clown_list.length
+      clown_list[i].hear_answer_result(heard_result)
       i += 1
     end
   end
-  
-  puts "Reds: #{format(prisoner_list.num_reds)} , Blues: #{format(prisoner_list.num_blues)}, Alive: #{format(prisoner_list.alive_prisoners)}"
-  prisoner_list.alive_prisoners
+
+  puts "Reds: #{format(clown_list.num_reds)} , Blues: #{format(clown_list.num_blues)}, Correct: #{format(clown_list.correct_clowns)}"
+  clown_list.correct_clowns
 end
 
 
