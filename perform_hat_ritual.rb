@@ -1,5 +1,6 @@
 require_relative 'clown.rb'
 require_relative 'clown_list.rb'
+require 'pry-byebug'
 
 def format(num)
   num.to_s.rjust(2, "0")
@@ -27,6 +28,7 @@ def play_sick_game
   clown_list.correct_clowns
 end
 
+binding.pry
 
 survivors_per_game = []
 times_to_play = ARGV[0].to_i
